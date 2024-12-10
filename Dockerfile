@@ -6,10 +6,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install Apache2 and necessary utilities
 RUN apt-get update && \
-    apt-get install -y apache2 && \
+    apt-get install -y apache2 sudo && \
     apt-get clean
 
-# Modify /etc/hosts to include the domain name
+# Modify /etc/hosts to include the domain name (run as root)
+USER root
 RUN echo "127.0.0.1   dev-01.rapakakarthik.shop" >> /etc/hosts
 
 # Set the working directory
