@@ -9,6 +9,9 @@ RUN apt-get update && \
     apt-get install -y apache2 && \
     apt-get clean
 
+# Modify /etc/hosts to include the domain name
+RUN echo "127.0.0.1   dev-01.rapakakarthik.shop" >> /etc/hosts
+
 # Set the working directory
 WORKDIR /var/www/
 
