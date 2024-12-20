@@ -23,8 +23,8 @@ COPY . /var/www/dev-01.rapakakarthik.shop/
 # Add the site configuration to Apache's sites-available directory
 RUN echo '<VirtualHost *:80>\n\
     ServerName dev-01.rapakakarthik.shop\n\
-    DocumentRoot /var/www/dev-01.rapakakarthik.shop\index.thml\n\
-    <Directory /var/www/dev-01.rapakakarthik.shop/index.html>\n\
+    DocumentRoot /var/www/dev-01.rapakakarthik.shop\index.html\n\
+    <Directory /var/www/dev-01.rapakakarthik.shop>\n\
         AllowOverride All\n\
         Require all granted\n\
         DirectoryIndex index.html\n\
