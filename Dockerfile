@@ -12,7 +12,7 @@ RUN apt-get update && \
 # Set the working directory
 WORKDIR /var/www/
 
-# Remove default html directory and create a new one for the specified domain
+# Remove the default html directory and create a new one for the specified domain
 RUN rm -rf /var/www/html && \
     mkdir -p /var/www/dev-01.rapakakarthik.shop && \
     chown -R www-data:www-data /var/www/dev-01.rapakakarthik.shop
@@ -23,7 +23,7 @@ COPY . /var/www/dev-01.rapakakarthik.shop/
 # Add the site configuration to Apache's sites-available directory
 RUN echo '<VirtualHost *:80>\n\
     ServerName dev-01.rapakakarthik.shop\n\
-    DocumentRoot /var/www/dev-01.rapakakarthik.shop/index.html\
+    DocumentRoot /var/www/dev-01.rapakakarthik.shop\n\
     <Directory /var/www/dev-01.rapakakarthik.shop>\n\
         AllowOverride All\n\
         Require all granted\n\
