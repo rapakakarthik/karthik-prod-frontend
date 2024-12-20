@@ -11,7 +11,8 @@ RUN apt-get update && \
 
 # Modify /etc/hosts to include the domain name (run as root)
 USER root
-RUN echo "127.0.0.1   dev-01.rapakakarthik.shop" >> /etc/hosts
+RUN echo "127.0.0.1   dev-01.rapakakarthik.shop" > /tmp/hosts && \
+    cat /tmp/hosts >> /etc/hosts
 
 # Set the working directory
 WORKDIR /var/www/
