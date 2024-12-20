@@ -9,11 +9,6 @@ RUN apt-get update && \
     apt-get install -y apache2 sudo && \
     apt-get clean
 
-# # Modify /etc/hosts to include the domain name (run as root)
-# USER root
-# RUN echo "127.0.0.1   dev-01.rapakakarthik.shop" > /tmp/hosts && \
-#     cat /tmp/hosts >> /etc/hosts
-
 # Set the working directory
 WORKDIR /var/www/
 
@@ -22,8 +17,8 @@ RUN rm -rf /var/www/html && \
     mkdir -p /var/www/dev-01.rapakakarthik.shop && \
     chown -R www-data:www-data /var/www/dev-01.rapakakarthik.shop
 
-# Copy files from the build context into the new directory
-COPY . /var/www/dev-01.rapakakarthik.shop
+# Copy files from the build context (including index.html) into the new directory
+COPY . /var/www/dev-01.rapakakarthik.shop/
 
 # Add the site configuration to Apache's sites-available directory
 RUN echo '<VirtualHost *:80>\n\
@@ -32,6 +27,7 @@ RUN echo '<VirtualHost *:80>\n\
     <Directory /var/www/dev-01.rapakakarthik.shop>\n\
         AllowOverride All\n\
         Require all granted\n\
+        DirectoryIndex index.html\n\
     </Directory>\n\
     ErrorLog ${APACHE_LOG_DIR}/error.log\n\
     CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
