@@ -9,10 +9,10 @@ RUN apt-get update && \
     apt-get install -y apache2 sudo && \
     apt-get clean
 
-# Modify /etc/hosts to include the domain name (run as root)
-USER root
-RUN echo "127.0.0.1   dev-01.rapakakarthik.shop" > /tmp/hosts && \
-    cat /tmp/hosts >> /etc/hosts
+# # Modify /etc/hosts to include the domain name (run as root)
+# USER root
+# RUN echo "127.0.0.1   dev-01.rapakakarthik.shop" > /tmp/hosts && \
+#     cat /tmp/hosts >> /etc/hosts
 
 # Set the working directory
 WORKDIR /var/www/
