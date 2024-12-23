@@ -33,9 +33,9 @@ COPY . /var/www/dev-01.rapakakarthik.shop/
 #     CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
 # </VirtualHost>' > /etc/apache2/sites-available/dev-01.rapakakarthik.shop.conf
 
-# Enable the new site and disable the default site
-RUN a2ensite dev-01.rapakakarthik.shop.conf && \
-    a2dissite 000-default.conf
+# # Enable the new site and disable the default site
+# RUN a2ensite dev-01.rapakakarthik.shop.conf && \
+#     a2dissite 000-default.conf
 
 # Enable mod_rewrite for Apache
 RUN a2enmod rewrite
