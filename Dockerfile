@@ -20,22 +20,22 @@ RUN rm -rf /var/www/html && \
 # Copy files from the build context (including index.html) into the new directory
 COPY . /var/www/dev-01.rapakakarthik.shop/
 
-# # Add the site configuration to Apache's sites-available directory
-# RUN echo '<VirtualHost *:80>\n\
-#     ServerName dev-01.rapakakarthik.shop\n\
-#     DocumentRoot /var/www/dev-01.rapakakarthik.shop\n\
-#     <Directory /var/www/dev-01.rapakakarthik.shop>\n\
-#         AllowOverride All\n\
-#         Require all granted\n\
-#         DirectoryIndex index.html\n\
-#     </Directory>\n\
-#     ErrorLog ${APACHE_LOG_DIR}/error.log\n\
-#     CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
-# </VirtualHost>' > /etc/apache2/sites-available/dev-01.rapakakarthik.shop.conf
+# Add the site configuration to Apache's sites-available directory
+RUN echo '<VirtualHost *:80>\n\
+    ServerName dev-01.rapakakarthik.shop\n\
+    DocumentRoot /var/www/dev-01.rapakakarthik.shop\n\
+    <Directory /var/www/dev-01.rapakakarthik.shop>\n\
+        AllowOverride All\n\
+        Require all granted\n\
+        DirectoryIndex index.html\n\
+    </Directory>\n\
+    ErrorLog ${APACHE_LOG_DIR}/error.log\n\
+    CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
+</VirtualHost>' > /etc/apache2/sites-available/dev-01.rapakakarthik.shop.conf
 
-# # Enable the new site and disable the default site
-# RUN a2ensite dev-01.rapakakarthik.shop.conf && \
-#     a2dissite 000-default.conf
+# Enable the new site and disable the default site
+RUN a2ensite dev-01.rapakakarthik.shop.conf && \
+    a2dissite 000-default.conf
 
 # Enable mod_rewrite for Apache
 RUN a2enmod rewrite
