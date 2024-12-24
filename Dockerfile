@@ -28,7 +28,7 @@ RUN echo '<VirtualHost *:80>\n\
         AllowOverride All\n\
         Require all granted\n\
         DirectoryIndex index.html\n\
-        Options -Indexes\n\  # Disable directory listing\n\
+        Options -Indexes\n\
     </Directory>\n\
     ErrorLog ${APACHE_LOG_DIR}/error.log\n\
     CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
@@ -41,11 +41,8 @@ RUN a2ensite job.rapakakarthik.shop.conf && \
 # Enable mod_rewrite for Apache
 RUN a2enmod rewrite
 
-# # Add ServerName directive to apache2.conf to suppress warnings
-# RUN echo "ServerName dev-01.rapakakarthik.shop" >> /etc/apache2/apache2.conf  {{ edit_1 }}
-
-# # Add ServerName directive to apache2.conf to suppress warnings
-# RUN echo "ServerName dev-01.rapakakarthik.shop:80" >> /etc/apache2/apache2.conf  {{ edit_1 }}
+# Add ServerName directive to apache2.conf to suppress warnings
+RUN echo "ServerName job.rapakakarthik.shop" >> /etc/apache2/apache2.conf
 
 # Expose port 80
 EXPOSE 80
