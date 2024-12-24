@@ -1,25 +1,14 @@
-# Use Ubuntu as the base image
 FROM ubuntu:latest
-
-# Set non-interactive mode to avoid some prompts during installation
 ENV DEBIAN_FRONTEND=noninteractive
-
-# Install Apache2 and necessary utilities
 RUN apt-get update && \
     apt-get install -y apache2 sudo && \
     apt-get clean
-
-# Set the working directory
 WORKDIR /var/www/
-
-# Remove the default html directory and create a new one for the specified domain
 RUN rm -rf /var/www/html && \
     mkdir -p /var/www/job.rapakakarthik.shop && \
     chown -R www-data:www-data /var/www/job.rapakakarthik.shop
-
-# Copy files from the build context (including index.html) into the new directory
-# COPY . /var/www/job.rapakakarthik.shop/
 COPY . /var/www/job.rapakakarthik.shop/
+
 
 # # Add the site configuration to Apache's sites-available directory
 # RUN echo '<VirtualHost *:80>\n\
@@ -38,7 +27,6 @@ COPY . /var/www/job.rapakakarthik.shop/
 RUN echo '<VirtualHost *:80>\n\
     ServerAdmin admin@rapakakarthik.shop\n\
     ServerName job.rapakakarthik.shop\n\
-    ServerAlias www.job.rapakakarthik.shop\n\
     DocumentRoot /var/www/job.rapakakarthik.shop\n\
 \n\
     <Directory /var/www/job.rapakakarthik.shop>\n\
@@ -60,8 +48,13 @@ RUN a2ensite job.rapakakarthik.shop.conf && \
 # Enable mod_rewrite for Apache
 RUN a2enmod rewrite
 
-# Add ServerName directive to apache2.conf to suppress warnings
-RUN echo "ServerName job.rapakakarthik.shop" >> /etc/apache2/apache2.conf
+COPY create_hosts.sh /usr/local/bin/create_hosts.sh
+   RUN chmod +x /usr/local/bin/create_hosts.sh
+
+# Start Apache in the foreground with the script
+CMD ["/usr/local/bin/create_hosts.sh", "apache2ctl", "-D", "FOREGROUND"]
+# # Add ServerName directive to apache2.conf to suppress warnings
+# RUN echo "ServerName job.rapakakarthik.shop" >> /etc/apache2/apache2.conf
 
 # Expose port 80
 EXPOSE 80
