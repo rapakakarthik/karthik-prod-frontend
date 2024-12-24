@@ -39,7 +39,7 @@ RUN echo '<VirtualHost *:80>\n\
     ServerAdmin admin@rapakakarthik.shop\n\
     ServerName job.rapakakarthik.shop\n\
     ServerAlias www.job.rapakakarthik.shop\n\
-    DocumentRoot /var/www/job.rapakakarthik.shop/index.html\n\
+    DocumentRoot /var/www/job.rapakakarthik.shop\n\
 \n\
     <Directory /var/www/job.rapakakarthik.shop>\n\
         AllowOverride All\n\
