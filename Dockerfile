@@ -19,12 +19,12 @@ RUN rm -rf /var/www/html && \
 
 # Copy files from the build context (including index.html) into the new directory
 # COPY . /var/www/job.rapakakarthik.shop/
-COPY index.html /var/www/job.rapakakarthik.shop/
+COPY . /var/www/job.rapakakarthik.shop/
 
 # Add the site configuration to Apache's sites-available directory
 RUN echo '<VirtualHost *:80>\n\
     ServerName job.rapakakarthik.shop\n\
-    DocumentRoot /var/www/job.rapakakarthik.shop\n\
+    DocumentRoot /var/www/job.rapakakarthik.shop/index.html\n\
     <Directory /var/www/job.rapakakarthik.shop>\n\
         AllowOverride All\n\
         Require all granted\n\
