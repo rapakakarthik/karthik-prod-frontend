@@ -40,8 +40,11 @@ RUN a2ensite dev-01.rapakakarthik.shop.conf && \
 # Enable mod_rewrite for Apache
 RUN a2enmod rewrite
 
+# # Add ServerName directive to apache2.conf to suppress warnings
+# RUN echo "ServerName dev-01.rapakakarthik.shop" >> /etc/apache2/apache2.conf  {{ edit_1 }}
+
 # Add ServerName directive to apache2.conf to suppress warnings
-RUN echo "ServerName dev-01.rapakakarthik.shop" >> /etc/apache2/apache2.conf  {{ edit_1 }}
+RUN echo "ServerName dev-01.rapakakarthik.shop:80" >> /etc/apache2/apache2.conf  {{ edit_1 }}
 
 # Expose port 80
 EXPOSE 80
