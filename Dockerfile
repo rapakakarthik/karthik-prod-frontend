@@ -18,7 +18,8 @@ RUN rm -rf /var/www/html && \
     chown -R www-data:www-data /var/www/job.rapakakarthik.shop
 
 # Copy files from the build context (including index.html) into the new directory
-COPY . /var/www/job.rapakakarthik.shop/
+# COPY . /var/www/job.rapakakarthik.shop/
+COPY index.html /var/www/job.rapakakarthik.shop/
 
 # Add the site configuration to Apache's sites-available directory
 RUN echo '<VirtualHost *:80>\n\
