@@ -21,19 +21,35 @@ RUN rm -rf /var/www/html && \
 # COPY . /var/www/job.rapakakarthik.shop/
 COPY . /var/www/job.rapakakarthik.shop/
 
-# Add the site configuration to Apache's sites-available directory
+# # Add the site configuration to Apache's sites-available directory
+# RUN echo '<VirtualHost *:80>\n\
+#     ServerName job.rapakakarthik.shop\n\
+#     DocumentRoot /var/www/job.rapakakarthik.shop/index.html\n\
+#     <Directory /var/www/job.rapakakarthik.shop>\n\
+#         AllowOverride All\n\
+#         Require all granted\n\
+#         DirectoryIndex index.html\n\
+#         Options -Indexes\n\
+#     </Directory>\n\
+#     ErrorLog ${APACHE_LOG_DIR}/error.log\n\
+#     CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
+# </VirtualHost>' > /etc/apache2/sites-available/job.rapakakarthik.shop.conf
+
 RUN echo '<VirtualHost *:80>\n\
+    ServerAdmin admin@job.rapakakarthik.shop\n\
     ServerName job.rapakakarthik.shop\n\
-    DocumentRoot /var/www/job.rapakakarthik.shop/index.html\n\
+    ServerAlias www.job.rapakakarthik.shop\n\
+    DocumentRoot /var/www/job.rapakakarthik.shop\n\
+\n\
     <Directory /var/www/job.rapakakarthik.shop>\n\
         AllowOverride All\n\
         Require all granted\n\
-        DirectoryIndex index.html\n\
-        Options -Indexes\n\
     </Directory>\n\
-    ErrorLog ${APACHE_LOG_DIR}/error.log\n\
-    CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
+\n\
+    ErrorLog ${APACHE_LOG_DIR}/rapakakarthik.shop-error.log\n\
+    CustomLog ${APACHE_LOG_DIR}/rapakakarthik.shop-access.log combined\n\
 </VirtualHost>' > /etc/apache2/sites-available/job.rapakakarthik.shop.conf
+
 
 # Enable the new site and disable the default site
 RUN a2ensite job.rapakakarthik.shop.conf && \
