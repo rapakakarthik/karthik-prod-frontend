@@ -14,17 +14,17 @@ WORKDIR /var/www/
 
 # Remove the default html directory and create a new one for the specified domain
 RUN rm -rf /var/www/html && \
-    mkdir -p /var/www/dev-01.rapakakarthik.shop && \
-    chown -R www-data:www-data /var/www/dev-01.rapakakarthik.shop
+    mkdir -p /var/www/job.rapakakarthik.shop && \
+    chown -R www-data:www-data /var/www/job.rapakakarthik.shop
 
 # Copy files from the build context (including index.html) into the new directory
-COPY . /var/www/dev-01.rapakakarthik.shop/
+COPY . /var/www/job.rapakakarthik.shop/
 
 # Add the site configuration to Apache's sites-available directory
 RUN echo '<VirtualHost *:80>\n\
-    ServerName dev-01.rapakakarthik.shop\n\
-    DocumentRoot /var/www/dev-01.rapakakarthik.shop\n\
-    <Directory /var/www/dev-01.rapakakarthik.shop>\n\
+    ServerName job.rapakakarthik.shop\n\
+    DocumentRoot /var/www/job.rapakakarthik.shop\n\
+    <Directory /var/www/job.rapakakarthik.shop>\n\
         AllowOverride All\n\
         Require all granted\n\
         DirectoryIndex index.html\n\
@@ -32,10 +32,10 @@ RUN echo '<VirtualHost *:80>\n\
     </Directory>\n\
     ErrorLog ${APACHE_LOG_DIR}/error.log\n\
     CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
-</VirtualHost>' > /etc/apache2/sites-available/dev-01.rapakakarthik.shop.conf
+</VirtualHost>' > /etc/apache2/sites-available/job.rapakakarthik.shop.conf
 
 # Enable the new site and disable the default site
-RUN a2ensite dev-01.rapakakarthik.shop.conf && \
+RUN a2ensite job.rapakakarthik.shop.conf && \
     a2dissite 000-default.conf
 
 # Enable mod_rewrite for Apache
