@@ -36,7 +36,7 @@ COPY . /var/www/job.rapakakarthik.shop/
 # </VirtualHost>' > /etc/apache2/sites-available/job.rapakakarthik.shop.conf
 
 RUN echo '<VirtualHost *:80>\n\
-    ServerAdmin admin@job.rapakakarthik.shop\n\
+    ServerAdmin admin@rapakakarthik.shop\n\
     ServerName job.rapakakarthik.shop\n\
     ServerAlias www.job.rapakakarthik.shop\n\
     DocumentRoot /var/www/job.rapakakarthik.shop\n\
@@ -46,8 +46,8 @@ RUN echo '<VirtualHost *:80>\n\
         Require all granted\n\
     </Directory>\n\
 \n\
-    ErrorLog ${APACHE_LOG_DIR}/rapakakarthik.shop-error.log\n\
-    CustomLog ${APACHE_LOG_DIR}/rapakakarthik.shop-access.log combined\n\
+    ErrorLog ${APACHE_LOG_DIR}/job.rapakakarthik.shop-error.log\n\
+    CustomLog ${APACHE_LOG_DIR}/job.rapakakarthik.shop-access.log combined\n\
 </VirtualHost>' > /etc/apache2/sites-available/job.rapakakarthik.shop.conf
 
 
