@@ -39,11 +39,13 @@ RUN echo '<VirtualHost *:80>\n\
     ServerAdmin admin@rapakakarthik.shop\n\
     ServerName job.rapakakarthik.shop\n\
     ServerAlias www.job.rapakakarthik.shop\n\
-    DocumentRoot /var/www/job.rapakakarthik.shop\n\
+    DocumentRoot /var/www/job.rapakakarthik.shop/index.html\n\
 \n\
     <Directory /var/www/job.rapakakarthik.shop>\n\
         AllowOverride All\n\
         Require all granted\n\
+        DirectoryIndex index.html\n\
+        Options -Indexes\n\
     </Directory>\n\
 \n\
     ErrorLog ${APACHE_LOG_DIR}/job.rapakakarthik.shop-error.log\n\
