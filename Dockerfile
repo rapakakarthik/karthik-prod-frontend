@@ -10,25 +10,6 @@ RUN rm -rf /var/www/html && \
 COPY . /var/www/job.rapakakarthik.shop/
 COPY job.rapakakarthik.shop.conf /etc/apache2/sites-available/job.rapakakarthik.shop.conf
 RUN chown -R www-data:www-data /etc/apache2/sites-available/job.rapakakarthik.shop.conf
-
-
-# RUN echo '<VirtualHost *:80>\n\
-#     ServerAdmin admin@rapakakarthik.shop\n\
-#     ServerName job.rapakakarthik.shop\n\
-#     DocumentRoot /var/www/job.rapakakarthik.shop\n\
-# \n\
-#     <Directory /var/www/job.rapakakarthik.shop>\n\
-#         AllowOverride All\n\
-#         Require all granted\n\
-#         DirectoryIndex index.html\n\
-#         Options -Indexes\n\
-#     </Directory>\n\
-# \n\
-#     ErrorLog ${APACHE_LOG_DIR}/job.rapakakarthik.shop-error.log\n\
-#     CustomLog ${APACHE_LOG_DIR}/job.rapakakarthik.shop-access.log combined\n\
-# </VirtualHost>' > /etc/apache2/sites-available/job.rapakakarthik.shop.conf
-
-
 RUN a2ensite job.rapakakarthik.shop.conf && \
     a2dissite 000-default.conf
 RUN a2enmod rewrite
