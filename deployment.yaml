@@ -1,0 +1,20 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flipkart-image
+spec:
+  replicas: 2 
+  selector:
+    matchLabels:
+      app: lob
+  template:
+    metadata:
+      labels:
+        app: lob
+    spec:
+      containers:
+        - name: flipkart-container
+          image: rapakakarthik7/dockerrepo:114 
+          ports:
+            - containerPort: 80  
