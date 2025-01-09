@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flipkart-image
+  name: flipkart
 spec:
   replicas: 2 
   selector:
     matchLabels:
-      app: lob
+      app: ecommerce
   template:
     metadata:
       labels:
-        app: lob
+        app: ecommerce
     spec:
       containers:
         - name: flipkart-container
