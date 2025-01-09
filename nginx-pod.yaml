@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest  
+      ports:
+        - containerPort: 80 
+      volumeMounts:
+        - name: nginx-volume
+          mountPath: /usr/share/nginx/html  # Default document root for Nginx
+  volumes:
+    - name: nginx-volume
+      emptyDir: {}  # Use an empty directory for demonstration; you can mount a persistent volume if needed
