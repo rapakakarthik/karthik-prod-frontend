@@ -1,10 +1,9 @@
-# deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: amazon
+  name: amazonapp-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: aws
@@ -14,8 +13,8 @@ spec:
         app: aws
     spec:
       containers:
-        - name: amazon-container
-          image: rapakakarthik7/dockerrepo:114 
+        - name: amazonapp-container
+          image: rapakakarthik7/dockerrepo:amazonapp 
           ports:
             - containerPort: 80
 
@@ -23,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: amazon
+  name: amazonapp-service
 spec:
   type: NodePort  
   selector:
@@ -31,4 +30,4 @@ spec:
   ports:
     - port: 80  
       targetPort: 80  
-      nodePort: 30001  
+      nodePort: 30008  
